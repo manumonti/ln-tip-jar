@@ -1,10 +1,10 @@
 "use client";
 
+import { Check } from "@untitledui/icons";
+import Image from "next/image";
 import { Button } from "@/components/base/buttons/button";
 import { Input } from "@/components/base/input/input";
 import { Select } from "@/components/base/select/select";
-import { Check } from "@untitledui/icons";
-import Image from "next/image";
 
 export const HomeScreen = () => {
     const waiters = [
@@ -16,13 +16,7 @@ export const HomeScreen = () => {
         <div className="flex h-dvh flex-col">
             <div className="flex min-h-0 flex-1 flex-col items-center justify-center px-4 md:px-8">
                 <div className="relative flex size-28 items-center justify-center">
-                    <Image
-                        src="/lightning-network-icon.svg"
-                        alt="Lightning Network"
-                        width={20}
-                        height={20}
-                        className="size-20"
-                    />
+                    <Image src="/lightning-network-icon.svg" alt="Lightning Network" width={20} height={20} className="size-20" />
                 </div>
 
                 <h1 className="max-w-3xl text-center text-display-sm font-semibold text-primary">Lightning Network Tip Jar</h1>
@@ -32,26 +26,28 @@ export const HomeScreen = () => {
                 </p>
 
                 <div className="relative mt-4 rounded-lg border border-secondary bg-secondary p-4">
-                    <div className="flex flex-col mt-2 gap-8">
-                        <Select
-                            isRequired
-                            size="md"
-                            label="Waiter / waitress"
-                            placeholder="Select your server"
-                            items={waiters}
-                        >
+                    <div className="mt-2 flex flex-col gap-8">
+                        <Select isRequired size="md" label="Waiter / waitress" placeholder="Select your server" items={waiters}>
                             {(item) => (
-                                <Select.Item id={item.id} supportingText={item.supportingText} isDisabled={item.isDisabled} icon={item.icon} avatarUrl={item.avatarUrl}>
+                                <Select.Item
+                                    id={item.id}
+                                    supportingText={item.supportingText}
+                                    isDisabled={item.isDisabled}
+                                    icon={item.icon}
+                                    avatarUrl={item.avatarUrl}
+                                >
                                     {item.label}
                                 </Select.Item>
                             )}
                         </Select>
                     </div>
-                    <div className="flex flex-col mt-2 gap-8">
+                    <div className="mt-2 flex flex-col gap-8">
                         <Input isRequired label="Amount (sats)" placeholder="5000" />
                     </div>
-                    <div className="flex flex-col mt-4 gap-8">
-                        <Button color="primary" size="md" iconLeading={<Check data-icon />}>Send tip</Button>
+                    <div className="mt-4 flex flex-col gap-8">
+                        <Button color="primary" size="md" iconLeading={<Check data-icon />}>
+                            Send tip
+                        </Button>
                     </div>
                 </div>
             </div>
