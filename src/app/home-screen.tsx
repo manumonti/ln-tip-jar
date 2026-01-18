@@ -1,7 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import { Send03 } from "@untitledui/icons";
 import Image from "next/image";
+import type { Key } from "react-aria-components";
 import { Button } from "@/components/base/buttons/button";
 import { Input } from "@/components/base/input/input";
 import { Select } from "@/components/base/select/select";
@@ -12,6 +14,15 @@ export const HomeScreen = () => {
         { label: "Nicolas Trevino", id: "nicolas", avatarUrl: "https://www.untitledui.com/images/avatars/nicolas-trevino?" },
         { label: "Lyle Kauffman", id: "lyle", avatarUrl: "https://www.untitledui.com/images/avatars/lyle-kauffman?" },
     ];
+
+    const [selectedWaiter, setSelectedWaiter] = useState<Key | null>(null);
+    const [amount, setAmount] = useState("");
+
+    function handleClick() {
+        console.log("Selected Waiter ID:", selectedWaiter);
+        console.log("Amount:", amount);
+    }
+
     return (
         <div className="flex h-dvh flex-col">
             <div className="flex min-h-0 flex-1 flex-col items-center justify-center px-4 md:px-8">
@@ -27,7 +38,7 @@ export const HomeScreen = () => {
 
                 <div className="relative mt-4 rounded-lg border border-secondary bg-secondary p-4">
                     <div className="mt-2 flex flex-col gap-8">
-                        <Select isRequired size="md" label="Waiter / waitress" placeholder="Select your server" items={waiters}>
+                        <Select isRequired size="md" label="Waiter / waitress" placeholder="Select your server" items={waiters} onChange={setSelectedWaiter}>
                             {(item) => (
                                 <Select.Item
                                     id={item.id}
@@ -42,10 +53,10 @@ export const HomeScreen = () => {
                         </Select>
                     </div>
                     <div className="mt-2 flex flex-col gap-8">
-                        <Input isRequired label="Amount (sats)" placeholder="5000" />
+                        <Input isRequired label="Amount (sats)" placeholder="5000" value={amount} onChange={setAmount} />
                     </div>
                     <div className="mt-4 flex flex-col gap-8">
-                        <Button color="primary" size="md" iconTrailing={<Send03 data-icon />}>
+                        <Button color="primary" size="md" iconTrailing={<Send03 data-icon />} onClick={handleClick} isDisabled={!selectedWaiter || !amount}>
                             Send tip
                         </Button>
                     </div>
