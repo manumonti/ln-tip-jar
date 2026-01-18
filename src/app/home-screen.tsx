@@ -1,6 +1,6 @@
 "use client";
 
-import { Check } from "@untitledui/icons";
+import { Send03 } from "@untitledui/icons";
 import Image from "next/image";
 import { Button } from "@/components/base/buttons/button";
 import { Input } from "@/components/base/input/input";
@@ -45,7 +45,7 @@ export const HomeScreen = () => {
                         <Input isRequired label="Amount (sats)" placeholder="5000" />
                     </div>
                     <div className="mt-4 flex flex-col gap-8">
-                        <Button color="primary" size="md" iconLeading={<Check data-icon />}>
+                        <Button color="primary" size="md" iconTrailing={<Send03 data-icon />}>
                             Send tip
                         </Button>
                     </div>
