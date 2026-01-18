@@ -1,75 +1,75 @@
 "use client";
 
-import { BookOpen01, Check, Copy01, Cube01, HelpCircle } from "@untitledui/icons";
 import { Button } from "@/components/base/buttons/button";
-import { ButtonUtility } from "@/components/base/buttons/button-utility";
-import { UntitledLogoMinimal } from "@/components/foundations/logo/untitledui-logo-minimal";
-import { useClipboard } from "@/hooks/use-clipboard";
+import { InputBase } from "@/components/base/input/input";
+import { InputGroup } from "@/components/base/input/input-group";
+import { Select } from "@/components/base/select/select";
+import { NativeSelect } from "@/components/base/select/select-native";
+import { Check } from "@untitledui/icons";
+import Image from "next/image";
 
 export const HomeScreen = () => {
-    const clipboard = useClipboard();
-
+    const waiters = [
+        { label: "Rachael Strong", id: "rachael", avatarUrl: "https://www.untitledui.com/images/avatars/rachael-strong?" },
+        { label: "Nicolas Trevino", id: "nicolas", avatarUrl: "https://www.untitledui.com/images/avatars/nicolas-trevino?" },
+        { label: "Lyle Kauffman", id: "lyle", avatarUrl: "https://www.untitledui.com/images/avatars/lyle-kauffman?" },
+    ];
     return (
         <div className="flex h-dvh flex-col">
             <div className="flex min-h-0 flex-1 flex-col items-center justify-center px-4 md:px-8">
                 <div className="relative flex size-28 items-center justify-center">
-                    <UntitledLogoMinimal className="size-10" />
-                </div>
-
-                <h1 className="max-w-3xl text-center text-display-sm font-semibold text-primary">Untitled UI Next.js starter kit</h1>
-
-                <p className="mt-2 max-w-xl text-center text-lg text-tertiary">
-                    Get started by using existing components that came with this starter kit or add new ones:
-                </p>
-
-                <div className="relative mt-6 flex h-10 items-center rounded-lg border border-secondary bg-secondary">
-                    <code className="px-3 font-mono text-secondary">npx untitledui@latest add</code>
-
-                    <hr className="h-10 w-px bg-border-secondary" />
-
-                    <ButtonUtility
-                        color="tertiary"
-                        size="sm"
-                        tooltip="Copy"
-                        className="mx-1"
-                        icon={clipboard.copied ? Check : Copy01}
-                        onClick={() => clipboard.copy("npx untitledui@latest add")}
+                    <Image
+                        src="/lightning-network-icon.svg"
+                        alt="Lightning Network"
+                        width={20}
+                        height={20}
+                        className="size-20"
                     />
                 </div>
 
-                <div className="mt-6 flex items-center gap-3">
-                    <Button
-                        href="https://www.untitledui.com/react/docs/introduction"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        color="link-color"
-                        size="lg"
-                        iconLeading={BookOpen01}
-                    >
-                        Docs
-                    </Button>
-                    <div className="h-px w-4 bg-brand-solid" />
-                    <Button
-                        href="https://www.untitledui.com/react/resources/icons"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        color="link-color"
-                        size="lg"
-                        iconLeading={Cube01}
-                    >
-                        Icons
-                    </Button>
-                    <div className="h-px w-4 bg-brand-solid" />
-                    <Button
-                        href="https://github.com/untitleduico/react/issues"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        color="link-color"
-                        size="lg"
-                        iconLeading={HelpCircle}
-                    >
-                        Help
-                    </Button>
+                <h1 className="max-w-3xl text-center text-display-sm font-semibold text-primary">Lightning Network Tip Jar</h1>
+
+                <p className="mt-4 max-w-lg text-center text-md text-tertiary">
+                    Support our staff by sending a tip directly to their wallet. It's fast, secure, and goes 100% to the waiter.
+                </p>
+
+                <div className="relative mt-4 rounded-lg border border-secondary bg-secondary p-4">
+                    <div className="flex flex-col mt-2 gap-8">
+                        <Select
+                            isRequired
+                            size="md"
+                            label="Waiter / waitress"
+                            placeholder="Select your server"
+                            items={waiters}
+                        >
+                            {(item) => (
+                                <Select.Item id={item.id} supportingText={item.supportingText} isDisabled={item.isDisabled} icon={item.icon} avatarUrl={item.avatarUrl}>
+                                    {item.label}
+                                </Select.Item>
+                            )}
+                        </Select>
+                    </div>
+                    <div className="flex flex-col mt-2 gap-8">
+                        <InputGroup
+                            isRequired
+                            label="Amount"
+                            trailingAddon={
+                                <NativeSelect
+                                    aria-label="Country"
+                                    options={[
+                                        { value: "Satoshi", label: "Satoshi" },
+                                        { value: "US", label: "US" },
+                                        { value: "EU", label: "EU" },
+                                    ]}
+                                />
+                            }
+                        >
+                            <InputBase type="text" placeholder="5,000.00" />
+                        </InputGroup>
+                    </div>
+                    <div className="flex flex-col mt-4 gap-8">
+                        <Button color="primary" size="md" iconLeading={<Check data-icon />}>Send tip</Button>
+                    </div>
                 </div>
             </div>
         </div>
