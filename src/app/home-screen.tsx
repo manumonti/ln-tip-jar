@@ -1,10 +1,8 @@
 "use client";
 
 import { Button } from "@/components/base/buttons/button";
-import { InputBase } from "@/components/base/input/input";
-import { InputGroup } from "@/components/base/input/input-group";
+import { Input } from "@/components/base/input/input";
 import { Select } from "@/components/base/select/select";
-import { NativeSelect } from "@/components/base/select/select-native";
 import { Check } from "@untitledui/icons";
 import Image from "next/image";
 
@@ -50,22 +48,7 @@ export const HomeScreen = () => {
                         </Select>
                     </div>
                     <div className="flex flex-col mt-2 gap-8">
-                        <InputGroup
-                            isRequired
-                            label="Amount"
-                            trailingAddon={
-                                <NativeSelect
-                                    aria-label="Country"
-                                    options={[
-                                        { value: "Satoshi", label: "Satoshi" },
-                                        { value: "US", label: "US" },
-                                        { value: "EU", label: "EU" },
-                                    ]}
-                                />
-                            }
-                        >
-                            <InputBase type="text" placeholder="5,000.00" />
-                        </InputGroup>
+                        <Input isRequired label="Amount (sats)" placeholder="5000" />
                     </div>
                     <div className="flex flex-col mt-4 gap-8">
                         <Button color="primary" size="md" iconLeading={<Check data-icon />}>Send tip</Button>
