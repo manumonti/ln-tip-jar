@@ -10,9 +10,9 @@ import { Select } from "@/components/base/select/select";
 
 export const HomeScreen = () => {
     const waiters = [
-        { label: "Rachael Strong", id: "rachael", avatarUrl: "https://www.untitledui.com/images/avatars/rachael-strong?" },
-        { label: "Nicolas Trevino", id: "nicolas", avatarUrl: "https://www.untitledui.com/images/avatars/nicolas-trevino?" },
-        { label: "Lyle Kauffman", id: "lyle", avatarUrl: "https://www.untitledui.com/images/avatars/lyle-kauffman?" },
+        { label: "Bob Trevino", id: "bob", avatarUrl: "https://www.untitledui.com/images/avatars/nicolas-trevino?" },
+        { label: "Carol Strong", id: "carol", avatarUrl: "https://www.untitledui.com/images/avatars/rachael-strong?" },
+        { label: "Dave Kauffman", id: "dave", avatarUrl: "https://www.untitledui.com/images/avatars/lyle-kauffman?" },
     ];
 
     const [selectedWaiter, setSelectedWaiter] = useState<Key | null>(null);
@@ -27,7 +27,7 @@ export const HomeScreen = () => {
         <div className="flex h-dvh flex-col">
             <div className="flex min-h-0 flex-1 flex-col items-center justify-center px-4 md:px-8">
                 <div className="relative flex size-28 items-center justify-center">
-                    <Image src="/lightning-network-icon.svg" alt="Lightning Network" width={20} height={20} className="size-20" />
+                    <Image src="icon.svg" alt="Lightning Network" width={20} height={20} className="size-20" />
                 </div>
 
                 <h1 className="max-w-3xl text-center text-display-sm font-semibold text-primary">Lightning Network Tip Jar</h1>
