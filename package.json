@@ -8,6 +8,7 @@
         "start": "next start"
     },
     "dependencies": {
+        "@radar/lnrpc": "^0.11.1-beta.1",
         "@tailwindcss/postcss": "^4.1.18",
         "@tailwindcss/typography": "^0.5.19",
         "@untitledui/file-icons": "^0.0.8",
