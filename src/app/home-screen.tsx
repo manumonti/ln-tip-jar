@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Send03 } from "@untitledui/icons";
 import Image from "next/image";
 import type { Key } from "react-aria-components";
 import { Button } from "@/components/base/buttons/button";
 import { Input } from "@/components/base/input/input";
 import { Select } from "@/components/base/select/select";
+import { fetchNodeInfo } from "@/lib/lnd";
 
 export const HomeScreen = () => {
     const waiters = [
@@ -17,6 +18,11 @@ export const HomeScreen = () => {
 
     const [selectedWaiter, setSelectedWaiter] = useState<Key | null>(null);
     const [amount, setAmount] = useState("");
+    const [nodeInfo, setNodeInfo] = useState<{ alias: string; balance: string; identityPubkey: string } | null>(null);
+
+    useEffect(() => {
+        fetchNodeInfo(setNodeInfo);
+    }, []);
 
     function handleClick() {
         console.log("Selected Waiter ID:", selectedWaiter);
@@ -35,6 +41,17 @@ export const HomeScreen = () => {
                 <p className="mt-4 max-w-lg text-center text-md text-tertiary">
                     Support our staff by sending a tip directly to their wallet. It's fast, secure, and goes 100% to the waiter.
                 </p>
+
+                {nodeInfo && (
+                    <div className="mt-4 flex flex-col items-center gap-1">
+                        <p className="text-sm text-tertiary">
+                            Connected to <span className="font-semibold text-primary">{nodeInfo.alias}</span>
+                        </p>
+                        <p className="text-sm text-tertiary">
+                            Balance: <span className="font-semibold text-primary">{parseInt(nodeInfo.balance).toLocaleString()} sats</span>
+                        </p>
+                    </div>
+                )}
 
                 <div className="relative mt-4 rounded-lg border border-secondary bg-secondary p-4">
                     <div className="mt-2 flex flex-col gap-8">
