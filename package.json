@@ -3,7 +3,8 @@
     "version": "0.0.0",
     "private": true,
     "scripts": {
-        "dev": "next dev --turbopack",
+        "dev:web": "next dev --turbopack",
+        "dev:api": "nodemon -I --watch ./backend/ --ext ts --exec ts-node --project ./backend/tsconfig.json ./backend/index.ts",
         "build": "next build",
         "start": "next start"
     },
@@ -11,12 +12,17 @@
         "@radar/lnrpc": "^0.11.1-beta.1",
         "@tailwindcss/postcss": "^4.1.18",
         "@tailwindcss/typography": "^0.5.19",
+        "@types/cors": "^2.8.19",
+        "@types/express": "^5.0.6",
         "@untitledui/file-icons": "^0.0.8",
         "@untitledui/icons": "^0.0.19",
+        "cors": "^2.8.5",
+        "express": "^5.2.1",
         "input-otp": "^1.4.2",
         "motion": "^12.23.26",
         "next": "^16.0.10",
         "next-themes": "^0.4.6",
+        "nodemon": "^3.1.11",
         "qr-code-styling": "^1.9.2",
         "react": "^19.2.3",
         "react-aria": "^3.44.0",
@@ -26,7 +32,8 @@
         "tailwind-merge": "^3.4.0",
         "tailwindcss": "^4.1.18",
         "tailwindcss-animate": "^1.0.7",
-        "tailwindcss-react-aria-components": "^2.0.1"
+        "tailwindcss-react-aria-components": "^2.0.1",
+        "ts-node": "^10.9.2"
     },
     "devDependencies": {
         "@trivago/prettier-plugin-sort-imports": "^5.2.2",
