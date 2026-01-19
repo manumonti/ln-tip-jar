@@ -7,24 +7,23 @@ import type { Key } from "react-aria-components";
 import { Button } from "@/components/base/buttons/button";
 import { Input } from "@/components/base/input/input";
 import { Select } from "@/components/base/select/select";
-import { fetchNodeInfo } from "@/lib/lnd";
+import { fetchNodeInfo, userNodes } from "@/lib/lnd";
 
 export const HomeScreen = () => {
-    const waiters = [
-        { label: "Bob Trevino", id: "bob", avatarUrl: "https://www.untitledui.com/images/avatars/nicolas-trevino?" },
-        { label: "Carol Strong", id: "carol", avatarUrl: "https://www.untitledui.com/images/avatars/rachael-strong?" },
-        { label: "Dave Kauffman", id: "dave", avatarUrl: "https://www.untitledui.com/images/avatars/lyle-kauffman?" },
-    ];
-
     const [selectedWaiter, setSelectedWaiter] = useState<Key | null>(null);
     const [amount, setAmount] = useState("");
     const [nodeInfo, setNodeInfo] = useState<{ alias: string; balance: string; identityPubkey: string } | null>(null);
 
     useEffect(() => {
-        fetchNodeInfo(setNodeInfo);
+        fetchNodeInfo("alice", setNodeInfo);
     }, []);
 
-    function handleClick() {
+    function handleGenerateInvoice() {
+        console.log("Selected Waiter ID:", selectedWaiter);
+        console.log("Amount:", amount);
+    }
+
+    function handleSendTip() {
         console.log("Selected Waiter ID:", selectedWaiter);
         console.log("Amount:", amount);
     }
@@ -55,7 +54,7 @@ export const HomeScreen = () => {
 
                 <div className="relative mt-4 rounded-lg border border-secondary bg-secondary p-4">
                     <div className="mt-2 flex flex-col gap-8">
-                        <Select isRequired size="md" label="Waiter / waitress" placeholder="Select your server" items={waiters} onChange={setSelectedWaiter}>
+                        <Select isRequired size="md" label="Waiter / waitress" placeholder="Select your server" items={userNodes} onChange={setSelectedWaiter}>
                             {(item) => (
                                 <Select.Item
                                     id={item.id}
@@ -73,7 +72,18 @@ export const HomeScreen = () => {
                         <Input isRequired label="Amount (sats)" placeholder="5000" value={amount} onChange={setAmount} />
                     </div>
                     <div className="mt-4 flex flex-col gap-8">
-                        <Button color="primary" size="md" iconTrailing={<Send03 data-icon />} onClick={handleClick} isDisabled={!selectedWaiter || !amount}>
+                        <Button
+                            color="primary"
+                            size="md"
+                            iconTrailing={<Send03 data-icon />}
+                            onClick={handleGenerateInvoice}
+                            isDisabled={!selectedWaiter || !amount}
+                        >
+                            Generate tip invoice
+                        </Button>
+                    </div>
+                    <div className="mt-4 flex flex-col gap-8">
+                        <Button color="primary" size="md" iconTrailing={<Send03 data-icon />} onClick={handleSendTip} isDisabled={!selectedWaiter || !amount}>
                             Send tip
                         </Button>
                     </div>
