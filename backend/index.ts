@@ -4,6 +4,7 @@ import * as routes from "./routes";
 
 const app = express();
 app.use(cors({ origin: "http://localhost:3000" }));
+app.use(express.json());
 const port = 4000;
 
 /**
@@ -30,6 +31,8 @@ export const catchAsyncErrors = (routeHandler: (req: Request, res: Response) => 
 };
 
 app.get("/api/getInfo", catchAsyncErrors(routes.getInfo));
+app.post("/api/createInvoice", catchAsyncErrors(routes.createInvoice));
+app.post("/api/sendTip", catchAsyncErrors(routes.sendTip));
 
 app.listen(port, () => {
     console.log(`Backend API listening on port ${port}`);
