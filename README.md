@@ -6,13 +6,15 @@ Lightning Network Tip Jar is a simple web application that allows users to send 
 
 ## Installation
 
-To simulate a LND network for you and your waiters, you will need to use a [Polar](https://lightningpolar.com/).
+To simulate a LND network with nodes for a restaurant costumer and some waiters, you will need to use a [Polar](https://lightningpolar.com/).
 
 > Note that Polar requires the installation of [Docker](https://www.docker.com/).
 
 After installing Polar, you can use [ln-tip-jar-polar.zip](./ln-tip-jar.polar.zip) to import the simulated network wich includes 4 LND nodes:
 
-- Alice is the spender / restaurant client.
+<img width="1113" height="422" alt="Polar Network" src="https://github.com/user-attachments/assets/331c0291-a99f-48ec-94b4-2ef92a07994f" />
+
+- Alice is the spender / restaurant costumer.
 - Bob, Carol and Dave are receivers / waiters.
 
 You will need this network set up and running before you can use the Lightning Network Tip Jar application.
@@ -23,10 +25,11 @@ To install dependencies, run:
 bun install
 ```
 
-To run the application, run:
+To run the application, you have to start the backend server and the frontend application in separate terminals:
 
 ```bash
-bun dev
+bun dev:api
+bun dev:web
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
