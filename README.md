@@ -2,6 +2,8 @@
 
 Lightning Network Tip Jar is a simple web application that allows users to send tips to their waiters and waitresses.
 
+![WebApp Gif](https://github.com/user-attachments/assets/58a932a9-e9a9-4758-a828-6706b8c01f17)
+
 ## Installation
 
 To simulate a LND network for you and your waiters, you will need to use a [Polar](https://lightningpolar.com/).
@@ -35,3 +37,4 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [Untitled UI](https://www.untitledui.com/)
 - [Next.js](https://nextjs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
+- [Express](https://expressjs.com/)
