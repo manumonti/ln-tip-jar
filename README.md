@@ -41,3 +41,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [Next.js](https://nextjs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Express](https://expressjs.com/)
+
+## TODOs
+
+- [ ] Fix payment flow
+
